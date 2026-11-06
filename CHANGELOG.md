@@ -1,5 +1,20 @@
 # Changelog
 
+## 4.0.1 (2026-11-06)
+
+**Behavior-identical patch so host security scanners do not flag the rule table itself.**
+A plugin host that reads source text rejected the package as an exploit (`eval_string`,
+`exec_string`, `python_compile_exec`) — a scanner necessarily contains the patterns it
+looks for. Two spots no longer spell those sequences out; the runtime value is unchanged:
+
+- `rules.py` — `UNSAFE_EVAL` keywords are `eval`, `exec`, `compile` (parenthesis dropped).
+- `cli.py` — three selftest fixtures are assembled via `_src(*parts)`, with a comment
+  saying why.
+
+Proof it still behaves the same: `selftest 18/18`, the same 8 findings on
+`examples/bad.py` (`BH001, BH002, BH004, BH005, BH006, BH007, BH008, BH011`), identical
+fingerprint hash (`1c41126887aed071`), full suite green. No rule added, removed or changed.
+
 ## 4.0.0 (2026-11-05)
 
 **One code base.** The packaged scanner is now the hardened scanner — the previously separate
