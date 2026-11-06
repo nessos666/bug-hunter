@@ -4,17 +4,17 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "bug-hunter"
-version = "4.0.1"
+dynamic = ["version"]
 description = "Offline, deterministic, LLM-free Python bug scanner with CWE, SARIF 2.1.0 and heuristic root-cause classification"
 readme = "README.md"
-license = { text = "MIT" }
+license = "MIT"
+license-files = ["LICENSE"]
 requires-python = ">=3.10"
 authors = [{ name = "nessos666" }]
 keywords = ["static-analysis", "bug-scanner", "root-cause", "sarif", "cwe", "offline", "security", "no-llm"]
 classifiers = [
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3 :: Only",
-  "License :: OSI Approved :: MIT License",
   "Operating System :: OS Independent",
   "Topic :: Software Development :: Quality Assurance",
   "Topic :: Security",
@@ -34,3 +34,6 @@ where = ["src"]
 testpaths = ["tests"]
 addopts = "-q"
 pythonpath = ["src"]
+
+[tool.setuptools.dynamic]
+version = { attr = "bug_hunter.core.VERSION" }

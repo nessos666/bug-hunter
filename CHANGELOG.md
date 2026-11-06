@@ -1,5 +1,12 @@
 # Changelog
 
+## 4.0.2 (2026-11-06)
+
+**Packaging metadata only — no code change.** `project.license` was the deprecated TOML
+table form and the MIT license classifier was deprecated too; both stop working on
+2027-02-18. Now: `license = "MIT"` (SPDX) plus `license-files = ["LICENSE"]`, classifier
+removed. Build and `twine check` are warning-free.
+
 ## 4.0.1 (2026-11-06)
 
 **Behavior-identical patch so host security scanners do not flag the rule table itself.**
